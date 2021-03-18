@@ -6,10 +6,10 @@
 name: Md. Tawheedul Islam Bhuian
 
 # Short bio or description (displayed in the header)
-description: Data Analyst, ULKA Games Ltd.
+description: Data Analyst, ULKA Games Ltd
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://raw.githubusercontent.com/tawheedrony/tawheedrony.github.io/master/images/tawheed.jpg
+avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
 
 #
 # Flags below are optional
@@ -18,8 +18,8 @@ avatar: https://raw.githubusercontent.com/tawheedrony/tawheedrony.github.io/mast
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email:
-  facebook:
+  email: tawheedrony@gmail.com
+  facebook: /tawheedrony
   flickr:
   github: barryclark/jekyll-now
   instagram:
