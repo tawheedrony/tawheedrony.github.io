@@ -5,12 +5,12 @@ permalink: /about/
 published: true
 ---
 
-![Tawheed]({{ site.baseurl }}/images/tawheed_new_new.jpeg "Tawheed")
+<img src="{{ site.baseurl }}/images/tawheed_new_new.jpeg" width="200" height="200" />
 
 Md. Tawheedul Islam Bhuian\
 Data Analyst,\
 ULKA Games Ltd.\
-Dhaka, Bangladesh\
+Dhaka, Bangladesh
 
 ### Details
 
