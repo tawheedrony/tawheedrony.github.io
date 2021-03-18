@@ -5,7 +5,7 @@ permalink: /about/
 published: true
 ---
 
-<img src="{{ site.baseurl }}/images/tawheed_new_new.jpeg" width="200" height="200" />
+<img src="{{ site.baseurl }}/images/tawheed_new_new.jpeg" width="250" height="300" />
 
 Md. Tawheedul Islam Bhuian\
 Data Analyst,\
