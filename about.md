@@ -5,7 +5,7 @@ permalink: /about/
 published: true
 ---
 
-![Tawheed]({{ site.baseurl }}/images/tawheed_new.jpeg "Tawheed")
+![Tawheed]({{ site.baseurl }}/images/tawheed_new_new.jpeg "Tawheed")
 
 
 
