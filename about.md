@@ -7,17 +7,15 @@ published: true
 
 ![Tawheed]({{ site.baseurl }}/images/tawheed_new_new.jpeg "Tawheed")
 
+Md. Tawheedul Islam Bhuian\
+Data Analyst,\
+ULKA Games Ltd.\
+Dhaka, Bangladesh\
 
+### Details
 
-
-Md. Tawheedul Islam Bhuian
-Data Analyst,
-ULKA Games Ltd.
-Dhaka, Bangladesh
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I am currently living in Dhaka, Bangladesh and doing my undergraduate in Electrical & Electronic Engineering ( major in Power ). I love learning about Statistics, Machine learning & Deep Learning.
+I would love to connect for collaboration and projects.
 
 ### Contact me
 
