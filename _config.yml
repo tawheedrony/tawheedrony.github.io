@@ -9,7 +9,7 @@ name: Md. Tawheedul Islam Bhuian
 description: Data Analyst, ULKA Games Ltd
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: "{{ site.baseurl }}/images/tawheed_new_new.jpeg"
+avatar: "https://i.ibb.co/4Ts6jwD/tawheed-new-new.jpg"
 
 #
 # Flags below are optional
