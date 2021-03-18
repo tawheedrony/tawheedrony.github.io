@@ -5,7 +5,11 @@ permalink: /about/
 published: true
 ---
 
-![an image alt text]({{ site.baseurl }}/images/jekyll-logo.png "an image title")
+![an image alt text]({{ site.baseurl }}/images/tawheed_new.jpeg "Tawheed")
+
+
+
+
 Md. Tawheedul Islam Bhuian
 Data Analyst,
 ULKA Games Ltd.
