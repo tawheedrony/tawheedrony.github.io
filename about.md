@@ -14,7 +14,7 @@ Dhaka, Bangladesh
 
 ### Details
 
-I am currently living in Dhaka, Bangladesh and doing my undergraduate in Electrical & Electronic Engineering ( major in Power ). I love learning about Statistics, Machine learning & Deep Learning.
+I am currently living in Dhaka, Bangladesh. I am in my undergraduate studying in Electrical & Electronic Engineering ( major in Power ).I work in ULKA Games Ltd which is a sister concern of Moonfroglabs, India . I love learning about Statistics, Machine learning & Deep Learning.
 I would love to connect for collaboration and projects.
 
 ### Contact me
