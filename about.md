@@ -5,7 +5,7 @@ permalink: /about/
 published: true
 ---
 
-![an image alt text]({{ site.baseurl }}/images/tawheed_new.jpeg "Tawheed" =300x200)
+![an image alt text]({{ site.baseurl }}/images/tawheed_new.jpeg "Tawheed")
 
 
 
