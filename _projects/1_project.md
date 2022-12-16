@@ -1,24 +1,13 @@
 ---
 layout: page
-title: project 1
-description: a project with a background image
+title: Real-Time Speech to Braile
+description: Group project for Microprocessor & Embedded Systems Laboratory course
 img: assets/img/12.jpg
 importance: 1
-category: work
+category: course
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
-
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
-
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+For this task, we have taken a software program of phone that captures the spoken words of a speaker and converts them to text, and then converts each letters into Braille signals. We have implemented this in Proteus where, using a Bluetooth module we captured the converted texts from a software and sent the texts to STM32F103C6. Finally STM32F103C6 converts the texts into Braille and shows them via LED lights.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
