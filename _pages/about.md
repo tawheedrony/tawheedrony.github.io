@@ -18,6 +18,15 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-A data science professional, currently working as an analyst for game & product at [Moonfrog](https://moonfroglabs.com). I work and communicate with cross-functional team of product managers, producers, designers, artists and QA engineers on day-to-day operations. I have over two years of experience implementing data-driven solutions with analytics, A/B Testing, natural language processing, monetization and user acquisition campaigns etc. Prior to joining here, I completed by undergraduate studies (B.Sc) in Electrical & Electronic Engineering from Bangladesh University of Science & Technology ([BUET](https://www.buet.ac.bd/web/#/)). During my undergraduate thesis, I created a model architecture for non-intrusive load monitoring of residential buildings using deep recurrent neural networks, that's what sparked the interest of data science in me. 
+QA Engineer at [Telnyx](https://telnyx.com)
 
-I am eager to pursue graduate studies (M.S & Ph.D) in Computer Science. My research goal is to develop state of the art machine learning methods to address solutions for biomedical and energy industry. If you are taking new students, I would like to know about research opportunities to work with you. 
+Previously worked as an analyst for game & product at [Moonfrog Labs](https://moonfroglabs.com). Prior to joining here, I completed by B.Sc in Electrical & Electronic Engineering from [BUET](https://www.buet.ac.bd/web/#/). 
+
+I am looking for Ph.D opportunities in Electrical Engineering. The following are broadly my current research interests.
+
+* Smart Grid
+* Machine Learning
+* Interconnected Energy Systems
+* Cyber-Physical Systems
+
+The best way to contact me is by email: tawheedrony@gmail.com
