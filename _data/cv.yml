@@ -53,28 +53,28 @@
         - Created a web-app using Flask and GCP AI Engine to deploy the model.
         - Presented on computer vision algorithms in a knowledge transfer session.
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 2019
-      items: 
-        - Certified Supply Chain Analyst, CSCA 
-    - year: 2018
-      items: 
-        - Duke of Edinburgh Bronze Award Winner
+#- title: Honors and Awards
+#  type: time_table
+#  contents:
+#    - year: 2019
+#     items: 
+#       - Certified Supply Chain Analyst, CSCA 
+#    - year: 2018
+#      items: 
+#        - Duke of Edinburgh Bronze Award Winner
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Energy Systems
-      items: 
-        - Network Modeling & Optimisation.
-        - Smart Grid.
-    - title: Control.
-      items:
-        - Cyber-Physical Systems.
+#- title: Academic Interests
+#  type: nested_list
+#  contents:
+#    - title: Energy Systems
+#      items: 
+#        - Network Modeling & Optimisation.
+#        - Smart Grid.
+#    - title: Control.
+#      items:
+#        - Cyber-Physical Systems.
 
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Basketball, Driving etc.
+#- title: Other Interests
+#  type: list
+#  contents:
+#    - <u>Hobbies:</u> Basketball, Driving etc.
