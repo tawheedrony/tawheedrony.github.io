@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /publications/
-title: Ppublications
+title: Publications
 description: Here are my publications (including preprints).
 years: [2022]
 nav: true
