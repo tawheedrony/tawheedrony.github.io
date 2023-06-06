@@ -7,6 +7,7 @@ title: Tawheedul Islam Bhuian # the website title (if blank, full name will be u
 first_name: Tawheedul
 middle_name: Islam
 last_name: Bhuian
+pronouns : he/him
 email: tawheedrony@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple, whitespace theme for academics portfolio. Based on [*folio](https://github.com/bogoli/-folio) design.
