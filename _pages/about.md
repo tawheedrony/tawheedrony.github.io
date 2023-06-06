@@ -28,5 +28,3 @@ I am looking for Ph.D opportunities in Electrical Engineering. The following are
 * Machine Learning
 * Interconnected Energy Systems
 * Cyber-Physical Systems
-
-The best way to contact me is by email: tawheedrony@gmail.com
