@@ -18,9 +18,9 @@
         - "Overall CGPA: 3.16/4.00."
         - "Major : Power System Engineering (3.50/4.00)."
         - "Thesis: Supervised Non-Intrusive Load Monitoring of Residential Buildings."
-          contents:
-            - "Disaggregated consumption across each appliance is predicted from the aggregated signal."
-            - "Proposed methodology constructed from LSTM Architecture with regression and classification sub-network."
+      contents:
+        - "Disaggregated consumption across each appliance is predicted from the aggregated signal."
+        - "Proposed methodology constructed from LSTM Architecture with regression and classification sub-network."
     - title: Higher Secondary School
       institution: Faujderhat Cadet College, Chattogram, Bangladesh
       year: 2014-2016
@@ -34,7 +34,7 @@
       institution: Telnyx
       year: 2023 - 
       description:
-        - Developed scripts to identify billing discrepancies in CDRs..
+        - Developed scripts to identify billing discrepancies in CDRs.
         - Collaborated in prioritizing analysis requirements and driving decision-making.
 
     - title: Analyst
@@ -52,29 +52,3 @@
       description : 
         - Created a web-app using Flask and GCP AI Engine to deploy the model.
         - Presented on computer vision algorithms in a knowledge transfer session.
-
-#- title: Honors and Awards
-#  type: time_table
-#  contents:
-#    - year: 2019
-#     items: 
-#       - Certified Supply Chain Analyst, CSCA 
-#    - year: 2018
-#      items: 
-#        - Duke of Edinburgh Bronze Award Winner
-
-#- title: Academic Interests
-#  type: nested_list
-#  contents:
-#    - title: Energy Systems
-#      items: 
-#        - Network Modeling & Optimisation.
-#        - Smart Grid.
-#    - title: Control.
-#      items:
-#        - Cyber-Physical Systems.
-
-#- title: Other Interests
-#  type: list
-#  contents:
-#    - <u>Hobbies:</u> Basketball, Driving etc.
