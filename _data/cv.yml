@@ -48,7 +48,7 @@
 
     - title: Data Science Intern
       institution: CRIDA
-      year: 2020
+      year: '2020'
       description : 
         - Created a web-app using Flask and GCP AI Engine to deploy the model.
         - Presented on computer vision algorithms in a knowledge transfer session.
