@@ -13,7 +13,7 @@
   contents:
     - title: B.Sc. in Electrical & Electronic Engineering
       institution: Bangladesh University of Engineering & Technology, Dhaka, Bangladesh
-      year: 2017
+      year: 2017-2022
       description:
         - "Overall CGPA: 3.16/4.00."
         - "Major : Power System Engineering (3.50/4.00)."
@@ -41,10 +41,10 @@
       institution: Moonfrog Labs
       year: 2020-2023
       description:
-        - Built an end-to-end analytics pipeline.
+        - Built end-to-end analytics pipelines for games.
         - Standardized campaign analytics and dashboarding for UA.
         - Managed controlled experiments from setup to monitoring and readouts.
-        - R&D on ML Models for forecasting revenue.
+        - Developed ML Models for forecasting revenue and growth.
 
     - title: Data Science Intern
       institution: CRIDA
