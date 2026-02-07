@@ -3,52 +3,73 @@
   contents:
     - name: Full Name
       value: Md Tawheedul Islam Bhuian
-    - name: Date of Birth
-      value: 23rd November 1997
+    - name: Location
+      value: Binghamton, NY
+    - name: Email
+      value: tawheedrony@gmail.com
     - name: Languages
       value: Bengali, English
 
 - title: Education
   type: time_table
   contents:
+    - title: M.S. in Computer Science, Artificial Intelligence Track
+      institution: Binghamton University, State University of New York
+      year: 2025 - Expected 2026
+      description:
+        - "Cumulative GPA: 4.0/4.0."
+        - "Relevant Coursework: Algorithms, Systems Programming, Robot Perception, Artificial Intelligence."
     - title: B.Sc. in Electrical & Electronic Engineering
       institution: Bangladesh University of Engineering & Technology, Dhaka, Bangladesh
       year: 2017-2022
       description:
-        - "Overall CGPA: 3.16/4.00."
-        - "Major : Power System Engineering (3.50/4.00)."
+        - "Relevant Coursework: Digital Logic Design, Microprocessor and Embedded Systems, Digital Signal Processing."
         - "Thesis: Supervised Non-Intrusive Load Monitoring of Residential Buildings."
-      contents:
-        - "Disaggregated consumption across each appliance is predicted from the aggregated signal."
-        - "Proposed methodology constructed from LSTM Architecture with regression and classification sub-network."
-    - title: Higher Secondary School
-      institution: Faujderhat Cadet College, Chattogram, Bangladesh
-      year: 2014-2016
-      description:
-        - "GPA: 5.00/5.00 (Talentpool Scholarship)."
 
 - title: Experience
   type: time_table
   contents:
-    - title: QA Engineer
-      institution: Telnyx
-      year: 2023 - 
+    - title: Graduate Research Assistant
+      institution: Binghamton University, School of Computing
+      year: Jan 2025 - Present
       description:
-        - Developed scripts to identify billing discrepancies in CDRs.
-        - Collaborated in prioritizing analysis requirements and driving decision-making.
+        - Collaborated in research project for test-time adaptation of Vision Language Model via Low Rank Adaptation.
+        - Developing robust perception framework combining multiple modalities of sensor inputs for real-time autonomous systems.
+        - Collaborated in writing project proposals for NSF Computer Systems Research and NAIRR Pilot.
 
-    - title: Analyst
+    - title: Software Engineer
+      institution: Telnyx LLC
+      year: Apr 2023 - Dec 2024
+      description:
+        - Automated scripts for automatic detection and reporting of billing discrepancies in telemetry records.
+        - Contributed to development in analytics pipeline for wireless and IoT networking product.
+        - Designed and deployed a real-time competitor rate integration pipeline for external pricing API.
+        - Developed routing and pricing reports which supported vendor negotiations to reduce carrier costs.
+        - Built bots and tools for billing support team to self-serve customers facing recurrent issues.
+
+    - title: Data Engineer
       institution: Moonfrog Labs
-      year: 2020-2023
+      year: Oct 2020 - Mar 2023
       description:
-        - Built end-to-end analytics pipelines for games.
-        - Standardized campaign analytics and dashboarding for UA.
-        - Managed controlled experiments from setup to monitoring and readouts.
-        - Developed ML Models for forecasting revenue and growth.
+        - Developed reporting metrics for monitoring growth, economy, revenue, campaigns and user acquisitions.
+        - Designed end-to-end analytics ETL pipeline for different marketing platforms and reporting.
+        - Setup & standardized user acquisition managers' campaign analytics and dashboarding processes.
+        - Engaged in full lifecycle of experiment manager setup, monitoring, developing A/B testing & final readouts.
+        - Developed a ML model to predict in-app purchases based on gameplay and other statistical measures.
 
-    - title: Data Science Intern
-      institution: CRIDA
-      year: '2020'
-      description : 
-        - Created a web-app using Flask and GCP AI Engine to deploy the model.
-        - Presented on computer vision algorithms in a knowledge transfer session.
+- title: Technical Skills
+  type: list
+  contents:
+    - "<b>Languages:</b> C, C++, Python, JavaScript, MATLAB, SQL, X-86 Assembly."
+    - "<b>Software:</b> Git, Unix, Docker, Airflow, Rundeck, Looker, Metabase."
+    - "<b>Hardwares:</b> Raspberry Pi, Jetson TX2/Orin."
+    - "<b>Additional:</b> PyTorch, Sklearn, TensorFlow, JAX, Spark."
+
+- title: Leadership Experience
+  type: time_table
+  contents:
+    - title: Treasurer, BGSA
+      institution: Binghamton University, Graduate Student Organization
+      year: Sep 2024 - Present
+      description:
+        - Organize socio-cultural events and maintain budgets for Bangladeshi Graduate Student Association at Binghamton University.

@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: # <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Graduate Research Assistant at <a href='https://www.binghamton.edu/'>Binghamton University</a>.
 
 profile:
   align: right
@@ -18,13 +18,15 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-QA Engineer at [Telnyx](https://telnyx.com)
+Graduate Research Assistant at [Binghamton University](https://www.binghamton.edu/), School of Computing.
 
-Previously worked as an analyst for game & product at [Moonfrog Labs](https://moonfroglabs.com). Prior to joining here, I completed by B.Sc in Electrical & Electronic Engineering from [BUET](https://www.buet.ac.bd/web/#/). 
+Currently, I am working on test-time adaptation of Vision Language Models (VLM) via Low Rank Adaptation (LoRA) and developing robust perception frameworks for real-time autonomous systems. 
 
-I am looking for Ph.D opportunities in Electrical Engineering. The following are broadly my current research interests.
+Previously, I worked as a Software Engineer at [Telnyx](https://telnyx.com) and as a Data Engineer at [Moonfrog Labs](https://moonfroglabs.com). I completed my B.Sc. in Electrical & Electronic Engineering from [Bangladesh University of Engineering & Technology (BUET)](https://www.buet.ac.bd/web/#/).
 
-* Smart Grid
-* Machine Learning
-* Interconnected Energy Systems
-* Cyber-Physical Systems
+My research interests include:
+
+* Computer Vision & Perception
+* Vision Language Models
+* Artificial Intelligence for Autonomous Systems
+* Real-Time Intelligent Sensing
