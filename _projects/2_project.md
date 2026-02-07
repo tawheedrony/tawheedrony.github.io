@@ -2,7 +2,6 @@
 layout: page
 title: Real-Time Shopify Order Tracker
 description: Project Lead | Technologies: Python, PostgreSQL, Looker Studio
-img: assets/img/1.jpg
 importance: 1
 category: work
 ---

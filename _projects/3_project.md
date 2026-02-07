@@ -2,7 +2,6 @@
 layout: page
 title: Send Time Optimization for Campaigns
 description: Co-Developer | Technologies: Python, AWS Redshift/S3, AWS Sagemaker
-img: assets/img/3.jpg
 importance: 2
 category: work
 ---

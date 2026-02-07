@@ -2,7 +2,6 @@
 layout: page
 title: Real-Time Speech to Braille Converter
 description: Co-Developer | Technologies: Python, STM32, Proteus, Google Voice API
-img: assets/img/12.jpg
 importance: 3
 category: academic
 ---
