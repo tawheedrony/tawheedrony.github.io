@@ -3,9 +3,10 @@
 # -----------------------------------------------------------------------------
 
 
-title: Tawheed Islam # the website title (if blank, full name will be used instead)
-first_name: Tawheed
-last_name: Islam
+title: Tawheed Islam Bhuian # the website title (if blank, full name will be used instead)
+first_name: Tawheedul
+middle_name: Islam
+last_name: Bhuian
 pronouns : he/him
 email: tawheedrony@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
