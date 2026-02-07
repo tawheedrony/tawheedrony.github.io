@@ -4,15 +4,6 @@ title: about
 permalink: /
 subtitle: Graduate Research Assistant at <a href='https://www.binghamton.edu/'>Binghamton University</a>.
 
-profile:
-  align: right
-  image: IMG_8896.jpg
-  image_circular: true # crops the image to make it circular
-  #address: >
-    #<p>6th Floor, House 223</p>
-    #<p>15 Lake Road, Mohakhali DOHS</p>
-    #<p>Dhaka, Bangladesh 1212</p>
-
 news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
