@@ -24,19 +24,4 @@ $max-content-width: {{ site.max_width }};
   "tabler-icons/tabler-icons-outline.scss"
 ;
 
-.publications {
-  counter-reset: pub-counter;
-}
-.publications .row {
-  display: block;
-  margin-bottom: 1.5rem;
-}
-.publications .row::before {
-  counter-increment: pub-counter;
-  content: counter(pub-counter) ". ";
-  font-weight: bold;
-  font-size: 1.1rem;
-  float: left;
-  margin-right: 0.5rem;
-}
 
