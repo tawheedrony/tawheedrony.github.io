@@ -18,17 +18,14 @@ This is a collection of the books, podcast episodes, videos, papers, articles an
 </div>
 </details>
 
-
 <details>
 <summary>Crypto/Web 3</summary>
 <div markdown = "1">
-
 
 - [E. Glen Weyl, Puja Ohlaver, Vitalik Buterin - Decentralized Society: Finding Web3's Soul](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4105763)
 - [Satoshi Nakamoto - Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf)
 - [Vitalik Buterin - Ethereum: A Next-Generation Smart Contract and Decentralized Application Platform](https://ethereum.org/en/whitepaper/)
 - [Nick Mudge - EIP-2535: Diamonds, Multi-Facet Proxy](https://eips.ethereum.org/EIPS/eip-2535)
-
 
 </div>
 </details>
@@ -72,7 +69,6 @@ This is a collection of the books, podcast episodes, videos, papers, articles an
 </div>
 </details>
 
-
 <details>
 <summary>Space</summary>
 <div markdown = "1">
@@ -115,12 +111,3 @@ This is a collection of the books, podcast episodes, videos, papers, articles an
 
 </div>
 </details>
-
-
-
-
-
-
-
-
-

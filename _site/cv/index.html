@@ -17,11 +17,11 @@
   
   
     
-      cv | Tawheed Islam Bhuian
+      cv | Tawheed Islam
     
   
 </title>
-<meta name="author" content="Tawheedul Islam Bhuian">
+<meta name="author" content="Tawheed Islam">
 <meta name="description" content="A simple, whitespace theme for academics portfolio. Based on [*folio](https://github.com/bogoli/-folio) design.
 ">
 
@@ -64,7 +64,7 @@
 <link rel="canonical" href="http://0.0.0.0:8080/cv/">
 
 <!-- Dark Mode -->
-<script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+<script src="/assets/js/theme.js?bd888c560287cd675855c7662a167c4a"></script>
 
   <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark">
   <script>
@@ -94,11 +94,9 @@
   <!-- Nav Bar -->
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
     <div class="container">
-      
-        <a class="navbar-brand title font-weight-lighter" href="/">
-          Tawheed Islam Bhuian
-        </a>
-      
+      <a class="navbar-brand title" href="/">
+        <span class="font-weight-bold">Tawheed</span> Islam
+      </a>
       <!-- Navbar Toggle -->
       <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
@@ -113,7 +111,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/">about
+            <a class="nav-link" href="/">About
               
             </a>
           </li>
@@ -142,7 +140,7 @@
                 
                 <li class="nav-item ">
                   
-                  <a class="nav-link" href="/publications/">publications
+                  <a class="nav-link" href="/publications/">Publications
                     
                   </a>
                 </li>
@@ -155,13 +153,6 @@
           
             
           
-          
-            <!-- Search -->
-            <li class="nav-item">
-              <button id="search-toggle" title="Search" onclick="openSearchModal()">
-                <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
-              </button>
-            </li>
           
           
             <!-- Toogle theme mode -->
@@ -726,9 +717,9 @@
   <footer class="fixed-bottom" role="contentinfo">
     <div class="container mt-0">
       © Copyright 2026
-      Tawheedul
-      Islam
-      Bhuian. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+      Tawheed
+      
+      Islam. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
 
       
       
@@ -773,7 +764,7 @@
 
   <!-- Medium Zoom JS -->
   <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
-  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+  <script defer src="/assets/js/zoom.js?3e7054dc4d3e3dd8f0731a48453e618e"></script>
 
 
 
@@ -783,7 +774,7 @@
 <!-- Load Common JS -->
 <script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
 <script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
-<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
+<script defer src="/assets/js/copy_code.js?3577194613afa04501eb52f8f4164de9" type="text/javascript"></script>
 
 <!-- Jupyter Open External Links New Tab -->
 <script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
@@ -911,129 +902,6 @@
 
 
     
-  <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script>
-  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
-  <script>
-    let searchTheme = determineComputedTheme();
-    const ninjaKeys = document.querySelector('ninja-keys');
-
-    if (searchTheme === 'dark') {
-      ninjaKeys.classList.add('dark');
-    } else {
-      ninjaKeys.classList.remove('dark');
-    }
-
-    const openSearchModal = () => {
-      // collapse navbarNav if expanded on mobile
-      const $navbarNav = $('#navbarNav');
-      if ($navbarNav.hasClass('show')) {
-        $navbarNav.collapse('hide');
-      }
-      ninjaKeys.open();
-    };
-  </script>
-  <script>
-    // get the ninja-keys element
-    const ninja = document.querySelector('ninja-keys');
-
-    // add the home and posts menu items
-    ninja.data = [{
-        id: "nav-about",
-        title: "about",
-        section: "Navigation",
-        handler: () => {
-          window.location.href = "/";
-        },
-      },{id: "nav-publications",
-              title: "publications",
-              description: "Here are my publications (including preprints).",
-              section: "Navigation",
-              handler: () => {
-                window.location.href = "/publications/";
-              },
-            },{id: "news-moved-to-binghamton-ny",
-              title: 'Moved to Binghamton, NY!',
-              description: "",
-              section: "News",},{id: "projects-",
-              title: '',
-              description: "",
-              section: "Projects",handler: () => {
-                  window.location.href = "/projects/1_project/";
-                },},{id: "projects-",
-              title: '',
-              description: "",
-              section: "Projects",handler: () => {
-                  window.location.href = "/projects/2_project/";
-                },},{id: "projects-",
-              title: '',
-              description: "",
-              section: "Projects",handler: () => {
-                  window.location.href = "/projects/3_project/";
-                },},{
-            id: 'socials-email',
-            title: 'Send email',
-            section: 'Socials',
-            handler: () => {
-              window.open("mailto:%74%61%77%68%65%65%64%72%6F%6E%79@%67%6D%61%69%6C.%63%6F%6D", "_blank");
-            },
-          },{
-            id: 'socials-whatsapp',
-            title: 'WhatsApp',
-            section: 'Socials',
-            handler: () => {
-              window.open("https://wa.me/16073130528", "_blank");
-            },
-          },{
-            id: 'socials-github',
-            title: 'GitHub',
-            section: 'Socials',
-            handler: () => {
-              window.open("https://github.com/tawheedrony", "_blank");
-            },
-          },{
-            id: 'socials-linkedin',
-            title: 'LinkedIn',
-            section: 'Socials',
-            handler: () => {
-              window.open("https://www.linkedin.com/in/tawheed-rony", "_blank");
-            },
-          },{
-            id: 'socials-rss',
-            title: 'RSS Feed',
-            section: 'Socials',
-            handler: () => {
-              window.open("/feed.xml", "_blank");
-            },
-          },{
-          id: 'light-theme',
-          title: 'Change theme to light',
-          description: 'Change the theme of the site to Light',
-          section: 'Theme',
-          handler: () => {
-            setThemeSetting("light");
-          },
-        },
-        {
-          id: 'dark-theme',
-          title: 'Change theme to dark',
-          description: 'Change the theme of the site to Dark',
-          section: 'Theme',
-          handler: () => {
-            setThemeSetting("dark");
-          },
-        },
-        {
-          id: 'system-theme',
-          title: 'Use system default theme',
-          description: 'Change the theme of the site to System Default',
-          section: 'Theme',
-          handler: () => {
-            setThemeSetting("system");
-          },
-        },];
-  </script>
-  <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
-
 
   </body>
 </html>
