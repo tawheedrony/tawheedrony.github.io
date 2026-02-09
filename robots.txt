@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://tawheedrony.com/sitemap.xml
+Sitemap: https://tawheedrony.github.io/sitemap.xml
