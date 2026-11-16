@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mosaic: OOD Detection in Vision Transformers with Patch Representations</title>
+<meta name="description" content="Mosaic is a post-hoc out-of-distribution detector that adds a Mahalanobis score on max-pooled patch tokens to the usual global score, lowering FPR95 on all 50 evaluated ViT checkpoints.">
+<meta property="og:title" content="Mosaic: Improving Out-of-Distribution Detection in Vision Transformers with Patch Representations">
+<meta property="og:description" content="Patch tokens catch out-of-distribution images that the global token misses. Explore the results interactively.">
+<meta property="og:image" content="https://tawheedrony.github.io/mosaic/img/examples.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ EDIT ME: links ============
+     Paper / Code buttons are disabled until you have URLs. To enable one, set its href and
+     delete aria-disabled="true" and the <small> tag. The BibTeX entry is near the bottom. -->
+
+<nav class="nav" aria-label="Page sections">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Mosaic</a>
+    <a class="home" href="/">&larr; Tawheed Islam</a>
+    <ul>
+      <li><a href="#framework">Framework</a></li>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#patches">Patches</a></li>
+      <li><a href="#descriptor">Descriptor</a></li>
+      <li><a href="#why">Why it helps</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#bibtex">Citation</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+<header class="hero">
+  <h1>Mosaic
+    <span class="sub">Improving Out-of-Distribution Detection in Vision Transformers with Patch Representations</span>
+  </h1>
+  <div class="authors">
+    <span><a href="/">Md Tawheedul Islam Bhuian</a></span>
+    <span>Md Farhan Sadiq</span>
+    <span>Rahim Hossain</span>
+    <span>Kyoung-Don Kang</span>
+  </div>
+  <p class="affil">State University of New York at Binghamton</p>
+  <div class="btns">
+    <a class="btn" id="btn-paper" href="#" aria-disabled="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v14H6V2zm8 1.5V9h5.5L14 3.5zM9 13v1.5h8V13H9zm0 3.5V18h8v-1.5H9z"/></svg>
+      Paper <small>(coming soon)</small></a>
+    <a class="btn" id="btn-code" href="#" aria-disabled="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+      Code <small>(coming soon)</small></a>
+    <a class="btn" href="#bibtex">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h4v4H9c0 1.7.6 2.6 2 3v2c-2.8-.4-4-2.3-4-5V7zm6 0h4v4h-2c0 1.7.6 2.6 2 3v2c-2.8-.4-4-2.3-4-5V7z"/></svg>
+      BibTeX</a>
+  </div>
+
+  <p class="tldr"><b>TL;DR:</b> Out-of-distribution detectors for ViTs usually look only at the global token. Mosaic adds one more Mahalanobis score, computed on the channel-wise max of the patch tokens, and sums the two. It needs no training, no OOD data and no fusion weights, and it lowers FPR95 on every one of the 50 checkpoints we tested.</p>
+
+  <div class="tiles">
+    <div class="tile"><div class="v num">50 / 50</div><div class="k">checkpoints improved over Mahalanobis++</div></div>
+    <div class="tile"><div class="v num">&minus;4.84 pp</div><div class="k">mean FPR95, ImageNet-1K calibration</div></div>
+    <div class="tile"><div class="v num">&minus;4.86 pp</div><div class="k">mean FPR95, ImageNet-LT calibration</div></div>
+    <div class="tile"><div class="v">Post-hoc</div><div class="k">frozen backbone, labeled ID data only</div></div>
+  </div>
+</header>
+
+<!-- ============ 1. Framework (animated) ============ -->
+<section id="framework">
+  <h2>Framework</h2>
+  <div class="card fw" id="fw">
+    <div class="fw-controls">
+      <button class="btn fw-play" type="button" aria-pressed="false">Pause</button>
+      <button class="btn fw-replay" type="button">Replay</button>
+    </div>
+    <div class="fw-scroll">
+      <svg viewBox="0 0 1060 335" role="img" aria-label="Animated diagram of Mosaic: an image is split into patches and passed through a frozen vision transformer; from the last layer the global token and the channel-wise max of the patch tokens are each scored in their own Gaussian feature space, and the two scores are summed into one ID confidence"></svg>
+    </div>
+    <ol class="fw-steps">
+      <li tabindex="0"><b>Patches</b>The input image is split into \(M\) patches, one token per patch.</li>
+      <li tabindex="0"><b>Frozen ViT</b>The tokens pass through the layers of a pre-trained vision transformer. Nothing is fine-tuned.</li>
+      <li tabindex="0"><b>Global token</b>Conventional detectors keep only the global token of the last layer, \(z_{\mathrm g}(x)\).</li>
+      <li tabindex="0"><b>Patch tokens</b>The same layer also outputs \(M\) patch tokens, each with \(D\) feature channels.</li>
+      <li tabindex="0"><b>Max over patches</b>For every channel, keep the strongest response across all patches. The result is one patch descriptor, \(z_{\mathrm p}(x)\).</li>
+      <li tabindex="0"><b>Two scores, one sum</b>Each descriptor is scored by its Mahalanobis distance to the nearest ID class; \(\mathcal S(x)=s_{\mathrm g}(x)+s_{\mathrm p}(x)\).</li>
+    </ol>
+  </div>
+  <p class="caption narrow"><b>How Mosaic scores an image.</b> Schematic with synthetic token values; click a step to jump to it.</p>
+</section>
+
+<hr class="rule">
+
+<section class="abstract narrow" id="abstract">
+  <h2>Abstract</h2>
+  <p>Out-of-distribution (OOD) detection is essential in safety-critical applications. Conventional OOD detectors often rely on global representations from the penultimate layer of vision transformers, overlooking information encoded in individual patch tokens. We introduce Mosaic, a post-hoc detector that models the geometry of patch-level representations to identify OOD samples missed by global features. Our method aggregates representations from all local patches into a single descriptor and uses Mahalanobis distances in both global and patch feature spaces to detect OOD samples. Experiments across multiple architectures and pre-training objectives demonstrate that Mosaic reduces average FPR@95 by 4.84&ndash;4.86 percentage points relative to the baseline under both balanced and long-tailed class distributions. These results establish the importance of patch features for OOD detection.</p>
+</section>
+
+<hr class="rule">
+
+<!-- ============ 3. OOD separation of individual patches ============ -->
+<section id="patches">
+  <h2>No single patch is a good detector, but the pooled patches are</h2>
+  <div class="narrow">
+    <p>We fit a separate Mahalanobis detector at each of the 196 patch positions of ViT-B/16. Every position is far worse than the global token, and which positions are most useful depends on the dataset: central patches on object-centric sets, border patches on Textures. Pooling across positions removes the need to pick one.</p>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <div class="controls">
+      <div class="ctl"><span class="lab">OOD set</span><div class="seg" id="gr-set"></div></div>
+    </div>
+    <div class="split even center">
+      <div>
+        <div class="heat" id="gr-heat" role="img" aria-label="14 by 14 grid of FPR95 per patch position"></div>
+        <div class="scale"><span class="num" id="gr-lo"></span><i></i><span class="num" id="gr-hi"></span><span>FPR95</span></div>
+        <p class="note" style="text-align:center;margin-top:6px">Each cell is one patch position. Outlined cells are the five best. Hover for values.</p>
+      </div>
+      <div>
+        <svg class="chart" id="gr-bars" role="img" aria-label="FPR95 of single-patch, pooled-patch, global and Mosaic detectors"></svg>
+      </div>
+    </div>
+  </div>
+  <figure>
+    <div class="imgbox"><img src="img/perpatch_grid.svg" alt="FPR95 of a single-patch Mahalanobis detector at each of the 14 by 14 patch positions, for SSB-Hard, NINCO, iNaturalist, Texture and OpenImage-O, with the best position outlined" loading="lazy" width="1010" height="275"></div>
+    <figcaption><b>Per-position FPR95 on all five OOD sets.</b> Lighter cells are better; the red square marks the best patch position for each set.</figcaption>
+  </figure>
+  <p class="caption narrow"><b>Single-patch versus pooled detection.</b> ViT-B/16, ImageNet-1K as ID; FPR95 in %, lower is better. Among pooling rules, channel-wise max has the lowest five-dataset mean (35.3) against min (36.7) and mean (47.4) pooling.</p>
+</section>
+
+<hr class="rule">
+
+<!-- ============ 4. Descriptor ============ -->
+<section id="descriptor">
+  <h2>One descriptor for all patches, scored like the global token</h2>
+  <div class="split center">
+    <figure style="margin:0">
+      <div class="imgbox"><img src="img/overview.svg" alt="Mosaic overview: the CLS token and the max-pooled patch tokens from the last layer are each scored against class-conditional Gaussians, and the two scores are summed into one ID confidence" width="1008" height="720"></div>
+      <figcaption><b>Overview.</b> Both descriptors come from the same penultimate layer of a frozen backbone. Statistics are estimated once from labeled ID data.</figcaption>
+    </figure>
+    <div class="steps">
+      <div class="step">
+        <h3>Pool the patch tokens</h3>
+        <p>Take the maximum of each feature dimension over the \(M\) layer-normalized patch tokens. A strong response survives even if it occurs in only a few patches.</p>
+        <div class="eq">\[ f_{\mathrm p}(x)=\bigl[\max_{1\le j\le M} p_{j,k}(x)\bigr]_{k=1}^{D} \]</div>
+      </div>
+      <div class="step">
+        <h3>Normalize and fit two Gaussian models</h3>
+        <p>\(\ell_2\)-normalize the <span class="g">global</span> and <span class="p">patch</span> descriptors, \(z_b = f_b/\lVert f_b\rVert_2\). For each branch \(b\in\{\mathrm g,\mathrm p\}\), estimate class means and one shared covariance with Ledoit&ndash;Wolf shrinkage.</p>
+      </div>
+      <div class="step">
+        <h3>Score each branch by its nearest class</h3>
+        <p>The ID confidence of a branch is the negative squared Mahalanobis distance to its closest class. The two branches may pick different classes.</p>
+        <div class="eq">\[ s_b(x)=-\min_{c}\,\bigl(z_b(x)-\hat\mu_{c,b}\bigr)^{\!\top}\widetilde\Sigma_b^{-1}\bigl(z_b(x)-\hat\mu_{c,b}\bigr) \]</div>
+      </div>
+      <div class="step">
+        <h3>Add the two scores</h3>
+        <p>No learned weights and no OOD validation data. Using the global score alone gives Mahalanobis++.</p>
+        <div class="eq">\[ \mathcal S(x)=s_{\mathrm g}(x)+s_{\mathrm p}(x) \]</div>
+      </div>
+    </div>
+  </div>
+  <figure class="narrow">
+<div class="imgbox"><img src="img/qq_gaussianity.svg" alt="Q-Q plots against a standard normal for global and patch features projected on large-eigenvalue, random and small-eigenvalue directions, with and without l2 normalization, for ViT-B/16 and CLIP ViT-B/16" loading="lazy" width="480" height="458"></div>
+      <figcaption><b>Gaussianity of global and patch features.</b> Q&ndash;Q plots against a standard normal along large-eigenvalue, random and small-eigenvalue directions, with and without \(\ell_2\) normalization (ImageNet-LT calibration).</figcaption>
+    </figure>
+</section>
+
+<hr class="rule">
+
+<!-- ============ 5. Why it helps ============ -->
+<section id="why">
+  <h2>The global token and the patch tokens catch different OOD images</h2>
+  <div class="narrow">
+    <p>Take an OOD image and measure two distances to the nearest ID class: one from its <span class="g">global</span> descriptor and one from its max-pooled <span class="p">patch</span> descriptor. Each detector rejects an image when its own distance is above a threshold that still accepts a chosen share of ID images. If the two detectors agreed, every point below would fall in the "both detect" or "both miss" corner. They do not.</p>
+    <p>Move the slider to change the operating point. The dashed curve is Mosaic's decision boundary: it sums the two distances, so it also rejects images that sit just inside both individual thresholds.</p>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <div class="controls">
+      <div class="ctl"><span class="lab">Backbone</span><div class="seg" id="ex-model"></div></div>
+      <div class="ctl"><span class="lab">OOD set</span><div class="seg" id="ex-set"></div></div>
+    </div>
+    <div class="controls">
+      <div class="ctl"><span class="lab">ID images accepted</span>
+        <input type="range" id="ex-tpr" min="80" max="99" step="1" value="95" aria-label="Share of ID images accepted (true positive rate)">
+        <span class="num strong" id="ex-tpr-val">95%</span></div>
+      <label class="check"><input type="checkbox" id="ex-id"> Show ID images</label>
+    </div>
+    <div class="split">
+      <div>
+        <svg class="chart" id="ex-chart" role="img" aria-label="Scatter plot of global versus patch Mahalanobis distance for out-of-distribution images"></svg>
+      </div>
+      <div class="readout">
+        <h4>Share of OOD images</h4>
+        <div id="ex-legend" class="readout" style="gap:7px"></div>
+        <h4 style="margin-top:10px">OOD images wrongly accepted (FPR)</h4>
+        <div id="ex-meters" class="readout" style="gap:9px"></div>
+        <p class="note" id="ex-note"></p>
+      </div>
+    </div>
+  </div>
+  <p class="caption narrow"><b>Global and patch branches make different mistakes.</b> ImageNet-1K as ID. Axes show squared Mahalanobis distance to the nearest ID class on a log scale; larger means more OOD-like. Percentages are computed on all images of the selected set (class-averaged for NINCO, as in the paper); the plot draws a random sample of 900.</p>
+
+  <figure>
+    <div class="imgbox"><img src="img/complementarity_datasets.svg" alt="Scatter plots of global score against patch score for OOD images from NINCO, SSB-Hard, Texture, OpenImage-O and iNaturalist, coloured by whether the global branch, the patch branch, both or neither detect them" loading="lazy" width="1033" height="300"></div>
+    <figcaption><b>The same picture on all five OOD sets</b> (ViT-B/16, ImageNet-1K as ID, thresholds at 95% TPR). On every set some OOD images are detected by the patch score only and others by the global score only.</figcaption>
+  </figure>
+
+  <figure class="narrow">
+    <div class="imgbox"><img src="img/complementarity_backbones.svg" alt="Global score against patch score on NINCO for ViT-B/16 and CLIP ViT-B/16" loading="lazy" width="540" height="426"></div>
+    <figcaption><b>Complementarity across pretraining objectives</b> (NINCO, ImageNet-1K as ID). For both the supervised ViT-B/16 and CLIP ViT-B/16, a share of OOD images is detected by only one of the two branches.</figcaption>
+  </figure>
+
+  <figure class="narrow">
+    <div class="imgbox"><img src="img/examples.png" alt="Five OOD images that Mahalanobis++ accepts as ID and Mosaic rejects, with the patches that contribute to the patch descriptor highlighted" loading="lazy" width="1271" height="638"></div>
+    <figcaption><b>OOD images missed by the global score but detected with patch evidence</b> (ViT-B/16, ImageNet-1K as ID). Under each image is its ID percentile for each detector; anything above 5% is accepted as ID at the 95% operating point. Bottom row: patches whose features respond more strongly than in 99% of training images from the predicted class.</figcaption>
+  </figure>
+
+  <figure class="narrow">
+<div class="imgbox"><img src="img/eigen_energy.svg" alt="Relative energy along each eigen-direction, ordered by decreasing eigenvalue, for OOD images detected by the global branch only and by the patch branch only" loading="lazy" width="520" height="337"></div>
+      <figcaption><b>Where the evidence sits in the spectrum.</b> Relative energy along each eigen-direction (decreasing \(\lambda_i\)) for OOD images detected by the global branch only and by the patch branch only; the dashed line is a uniform spread.</figcaption>
+    </figure>
+</section>
+
+<hr class="rule">
+
+<!-- ============ 6. Results ============ -->
+<section id="results">
+  <h2>Mosaic lowers FPR95 on every one of 50 checkpoints</h2>
+  <div class="narrow">
+    <p>The checkpoints cover ViT, DeiT, BEiT, Swin and EVA with supervised, CLIP and masked-image-modeling pretraining. Each point is one checkpoint, averaged over five OpenOOD sets (SSB-Hard, NINCO, iNaturalist, Textures, OpenImage-O). Points below the diagonal are checkpoints where Mosaic beats the selected baseline.</p>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <div class="controls">
+      <div class="ctl"><span class="lab">Calibration</span><div class="seg" id="bn-cal"></div></div>
+      <div class="ctl"><span class="lab">Compare against</span><select id="bn-base" aria-label="Baseline method"></select></div>
+    </div>
+    <p class="summary" id="bn-summary"></p>
+    <div class="split even">
+      <div>
+        <svg class="chart" id="bn-chart" role="img" aria-label="Baseline versus Mosaic FPR95 for 50 checkpoints"></svg>
+        <div class="legend-inline" id="bn-legend"></div>
+      </div>
+      <div>
+        <svg class="chart" id="bn-delta" role="img" aria-label="FPR95 change per checkpoint, sorted"></svg>
+        <p class="note">Change in FPR95 per checkpoint, sorted. Bars to the left are improvements.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size:23px;text-align:center;margin:40px auto 14px;font-weight:500">Against established detectors on four representative backbones</h2>
+  <div class="card">
+    <div class="controls">
+      <div class="ctl"><span class="lab">Backbone</span><div class="seg" id="st-bb"></div></div>
+      <div class="ctl"><span class="lab">Calibration</span><div class="seg" id="st-cal"></div></div>
+      <div class="ctl"><span class="lab">OOD set</span><select id="st-col" aria-label="OOD dataset"></select></div>
+    </div>
+    <svg class="chart" id="st-chart" role="img" aria-label="FPR95 of eleven OOD detectors"></svg>
+  </div>
+  <p class="caption narrow"><b>FPR95 (%, lower is better), sorted.</b> Mosaic has the lowest five-dataset average on all four backbones under both calibration sets. It does not lead on every individual dataset; switch the OOD set to see where.</p>
+</section>
+
+<hr class="rule">
+
+<section id="plugin">
+  <h2>The patch score also improves other distance-based detectors</h2>
+  <div class="narrow">
+    <p>The patch branch is not tied to Mahalanobis++. We add a patch confidence to seven detectors and keep each method's original global score as the baseline. KNN uses nearest-neighbor distance on the pooled descriptor; the Gaussian methods use the patch Mahalanobis score. X-Mahalanobis already combines global features from several layers and still gains.</p>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <div class="controls">
+      <div class="ctl"><span class="lab">Backbone</span><div class="seg" id="pl-bb"></div></div>
+      <div class="ctl"><span class="lab">Calibration</span><div class="seg" id="pl-cal"></div></div>
+      <div class="ctl"><span class="lab">OOD set</span><select id="pl-col" aria-label="OOD dataset"></select></div>
+    </div>
+    <svg class="chart" id="pl-chart" role="img" aria-label="FPR95 before and after adding the patch score, for seven detectors"></svg>
+    <div class="legend-inline">
+      <span><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="4.5" fill="none" stroke="var(--c-base)" stroke-width="2"/></svg>Global score only</span>
+      <span><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5" fill="var(--c-patch)"/></svg>+ Patch score</span>
+    </div>
+  </div>
+
+  <h2 style="font-size:23px;text-align:center;margin:40px auto 14px;font-weight:500">Equal weights are close to the best fixed weight</h2>
+  <div class="narrow">
+    <p>Mosaic uses \(\mathcal S = s_{\mathrm g} + \alpha\, s_{\mathrm p}\) with \(\alpha = 1\). Sweeping \(\alpha\) after the fact shows a wide, flat basin: averaged over the 50 checkpoints, the best fixed weight is only about 0.4 pp better than the unweighted sum, and finding it would need OOD data.</p>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <div class="controls">
+      <div class="ctl"><span class="lab">Checkpoint</span><select id="fw-model" aria-label="Checkpoint"></select></div>
+    </div>
+    <svg class="chart" id="fw-chart" role="img" aria-label="FPR95 as a function of the patch weight alpha"></svg>
+  </div>
+  <p class="caption narrow"><b>Sensitivity to the patch weight.</b> ImageNet-1K as ID; FPR95 averaged over the five OpenOOD sets. \(\alpha = 0\) is Mahalanobis++ and \(\alpha = 1\) is Mosaic.</p>
+</section>
+
+<hr class="rule">
+
+<!-- ============ BibTeX ============ -->
+<section id="bibtex" class="narrow">
+  <h2>Citation</h2>
+  <div class="bibwrap">
+    <button class="btn" id="bib-copy" type="button">Copy</button>
+<pre class="bib" id="bib">@misc{bhuian2026mosaic,
+  title  = {Mosaic: Improving Out-of-Distribution Detection in Vision
+            Transformers with Patch Representations},
+  author = {Bhuian, Md Tawheedul Islam and Sadiq, Md Farhan and
+            Hossain, Rahim and Kang, Kyoung-Don},
+  year   = {2026},
+  note   = {Preprint}
+}</pre>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 the authors &middot; <a href="/">tawheedrony.github.io</a>
+</footer>
+
+</div>
+
+<div class="tip" id="tip" role="status"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="framework.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]})"></script>
+</body>
+</html>

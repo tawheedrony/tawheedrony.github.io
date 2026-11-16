@@ -231,6 +231,7 @@ exclude:
   - README.md
   - gems/
   - migrations/
+  - "mosaic/img/*.pdf" # source figures; the page uses the SVG versions
   - vendor
 keep_files:
   - CNAME
