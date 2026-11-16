@@ -3,25 +3,55 @@
 ---
 @charset "utf-8";
 
-// Dimensions
-$max-content-width: {{ site.max_width }};
+/* Built-in Sass modules you’ll likely use across partials */
+@use "sass:math";
+@use "sass:string";
 
-@import
-  "variables",
-  "themes",
-  "layout",
-  "base",
-  "distill",
-  "cv",
-  "tabs",
-  "typograms",
-  "font-awesome/fontawesome",
-  "font-awesome/brands",
-  "font-awesome/solid",
-  "font-awesome/regular",
-  "tabler-icons/tabler-icons.scss",
-  "tabler-icons/tabler-icons-filled.scss",
-  "tabler-icons/tabler-icons-outline.scss"
-;
+/* Configure your design tokens BEFORE loading any of your partials.
+   Make sure `_sass/_variables.scss` declares `$max-content-width: 72rem !default;` */
+@use "variables" with (
+  $max-content-width: {{ site.max_width | default:  "930px" }},
+  $purple-color: #004d00 // site accent color (dark green) for the light theme
+);
 
+/* Your project partials — convert these files to `@use "variables";`
+   (or `@use "variables" as *;`) inside each file and qualify variables if needed. */
+@use "themes";
+@use "layout";
 
+// Core styles organized by usage
+@use "typography";
+@use "navbar";
+@use "footer";
+@use "blog";
+@use "publications";
+@use "components";
+@use "utilities";
+
+// Other specialized styles
+@use "tabs";
+@use "teachings";
+@use "typograms";
+
+// Site-specific tweaks
+// Publication entries span the full row (thumbnails are disabled in _config.yml).
+.publications ol.bibliography li .row > .col-sm-10 {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+// CV entries: no list bullets, thin divider between entries.
+.cv ul.list-group {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.cv .card .list-group-item {
+  padding: 0.75rem 0;
+
+  & + .list-group-item {
+    border-top: 1px solid var(--global-divider-color);
+  }
+}
