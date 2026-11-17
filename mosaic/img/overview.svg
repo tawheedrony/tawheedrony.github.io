@@ -262,7 +262,6 @@
 </g>
 </g>
 </defs>
-<rect x="-25.2" y="-18" width="302.4" height="216" fill="rgb(100%, 100%, 100%)" fill-opacity="1"/>
 <path fill-rule="nonzero" fill="rgb(96.076965%, 96.076965%, 96.076965%)" fill-opacity="1" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(46.273804%, 46.273804%, 46.273804%)" stroke-opacity="1" stroke-dasharray="1.8 0.96" stroke-miterlimit="10" d="M 6.5 28 L 84 28 C 87.332031 28 89 29.667969 89 33 L 89 119 C 89 122.332031 87.332031 124 84 124 L 6.5 124 C 3.167969 124 1.5 122.332031 1.5 119 L 1.5 33 C 1.5 29.667969 3.167969 28 6.5 28 Z M 6.5 28 " transform="matrix(1, 0, 0, -1, 0, 180)"/>
 <g fill="rgb(46.273804%, 46.273804%, 46.273804%)" fill-opacity="1">
 <use xlink:href="#glyph-0-0" x="13.78125" y="65.820313"/>
