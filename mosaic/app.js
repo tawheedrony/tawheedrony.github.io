@@ -229,11 +229,11 @@
 
       var ex = D.explorer.models.augreg.sets[st.set].stats[D.explorer.tprs.indexOf(95)];
       var rows = [
-        ['Median single patch', sorted[98].v, 'var(--c-neutral)'],
-        ['Best single patch', lo, 'var(--c-neutral)'],
-        ['Max-pooled patches', ex[5], 'var(--c-patch)'],
-        ['Global token (Maha++)', ex[4], 'var(--c-global)'],
-        ['Mosaic (global + patch)', ex[6], 'var(--accent)']
+        ['Median Single Patch', sorted[98].v, 'var(--c-neutral)'],
+        ['Best Single Patch', lo, 'var(--c-neutral)'],
+        ['Patch Descriptor', ex[5], 'var(--c-patch)'],
+        ['Global Token (Maha++)', ex[4], 'var(--c-global)'],
+        ['Mosaic (Global + Patch)', ex[6], 'var(--accent)']
       ];
       clear(bars);
       var W = size(bars, 250).W, L = 158, R = 46, bh = 22, gap = 16, top = 26;

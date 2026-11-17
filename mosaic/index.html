@@ -29,6 +29,7 @@
       <li><a href="#abstract">Abstract</a></li>
       <li><a href="#patches">Patches</a></li>
       <li><a href="#descriptor">Descriptor</a></li>
+      <li><a href="#complementarity">Complementarity</a></li>
       <li><a href="#why">Why it helps</a></li>
       <li><a href="#results">Results</a></li>
       <li><a href="#bibtex">Citation</a></li>
@@ -61,14 +62,14 @@
       BibTeX</a>
   </div>
 
-  <p class="tldr"><b>TL;DR:</b> Out-of-distribution detectors for ViTs usually look only at the global token. Mosaic adds one more Mahalanobis score, computed on the channel-wise max of the patch tokens, and sums the two. It needs no training, no OOD data and no fusion weights, and it lowers FPR95 on every one of the 50 checkpoints we tested.</p>
+  <p class="tldr"><b>TL;DR:</b> Existing post-hoc Out-of-distribution detectors for ViTs usually look only at the global representation. Mosaic models the geometry of patch representations to examine OOD evidence. </p>
 
-  <div class="tiles">
+  <!-- <div class="tiles">
     <div class="tile"><div class="v num">50 / 50</div><div class="k">checkpoints improved over Mahalanobis++</div></div>
     <div class="tile"><div class="v num">&minus;4.84 pp</div><div class="k">mean FPR95, ImageNet-1K calibration</div></div>
     <div class="tile"><div class="v num">&minus;4.86 pp</div><div class="k">mean FPR95, ImageNet-LT calibration</div></div>
     <div class="tile"><div class="v">Post-hoc</div><div class="k">frozen backbone, labeled ID data only</div></div>
-  </div>
+  </div> -->
 </header>
 
 <!-- ============ 1. Framework (animated) ============ -->
@@ -87,7 +88,7 @@
       <li tabindex="0"><b>Frozen ViT</b>The tokens pass through the layers of a pre-trained vision transformer. Nothing is fine-tuned.</li>
       <li tabindex="0"><b>Global token</b>Conventional detectors keep only the global token of the last layer, \(z_{\mathrm g}(x)\).</li>
       <li tabindex="0"><b>Patch tokens</b>The same layer also outputs \(M\) patch tokens, each with \(D\) feature channels.</li>
-      <li tabindex="0"><b>Max over patches</b>For every channel, keep the strongest response across all patches. The result is one patch descriptor, \(z_{\mathrm p}(x)\).</li>
+      <li tabindex="0"><b>Patch Descriptor</b>For every channel, keep the strongest response across all patches. The result is one patch descriptor, \(z_{\mathrm p}(x)\).</li>
       <li tabindex="0"><b>Two scores, one sum</b>Each descriptor is scored by its Mahalanobis distance to the nearest ID class; \(\mathcal S(x)=s_{\mathrm g}(x)+s_{\mathrm p}(x)\).</li>
     </ol>
   </div>
@@ -98,16 +99,16 @@
 
 <section class="abstract narrow" id="abstract">
   <h2>Abstract</h2>
-  <p>Out-of-distribution (OOD) detection is essential in safety-critical applications. Conventional OOD detectors often rely on global representations from the penultimate layer of vision transformers, overlooking information encoded in individual patch tokens. We introduce Mosaic, a post-hoc detector that models the geometry of patch-level representations to identify OOD samples missed by global features. Our method aggregates representations from all local patches into a single descriptor and uses Mahalanobis distances in both global and patch feature spaces to detect OOD samples. Experiments across multiple architectures and pre-training objectives demonstrate that Mosaic reduces average FPR@95 by 4.84&ndash;4.86 percentage points relative to the baseline under both balanced and long-tailed class distributions. These results establish the importance of patch features for OOD detection.</p>
-</section>
+Out-of-distribution (OOD) detection is critical for reliable deployment of vision models in safety-sensitive applications. Existing post-hoc OOD detectors primarily rely on global representations from the penultimate layer, potentially missing complementary information encoded in local patch tokens. We model the geometry of patch representations to examine OOD evidence in vision transformers. Specifically, we introduce Mosaic, a post-hoc OOD detector that aggregates patch-token representations into an image descriptor, models its class-conditional
+geometry, and combines Mahalanobis distances computed in global and patch feature spaces, without modifying the pretrained backbone. Extensive experiments across architectures and pretraining objectives show that Mosaic consistently improves OOD detection, reducing average FPR95 by 4.84–4.86 percentage points over the global-feature baseline under class-balanced and long-tailed calibration, respectively. </section>
 
 <hr class="rule">
 
 <!-- ============ 3. OOD separation of individual patches ============ -->
 <section id="patches">
-  <h2>No single patch is a good detector, but the pooled patches are</h2>
+  <h2>No single patch is a good detector, but patch descriptors are.</h2>
   <div class="narrow">
-    <p>We fit a separate Mahalanobis detector at each of the 196 patch positions of ViT-B/16. Every position is far worse than the global token, and which positions are most useful depends on the dataset: central patches on object-centric sets, border patches on Textures. Pooling across positions removes the need to pick one.</p>
+    <p>We fit a separate Mahalanobis detector at each of the 196 patch positions of ViT-B/16. Every position is far worse than the global representation. Patch descriptor pools across positions to find the extreme responses.</p>
   </div>
   <div class="card" style="margin-top:18px">
     <div class="controls">
@@ -124,18 +125,18 @@
       </div>
     </div>
   </div>
-  <figure>
+  <!-- <figure>
     <div class="imgbox"><img src="img/perpatch_grid.svg" alt="FPR95 of a single-patch Mahalanobis detector at each of the 14 by 14 patch positions, for SSB-Hard, NINCO, iNaturalist, Texture and OpenImage-O, with the best position outlined" loading="lazy" width="1010" height="275"></div>
     <figcaption><b>Per-position FPR95 on all five OOD sets.</b> Lighter cells are better; the red square marks the best patch position for each set.</figcaption>
-  </figure>
-  <p class="caption narrow"><b>Single-patch versus pooled detection.</b> ViT-B/16, ImageNet-1K as ID; FPR95 in %, lower is better. Among pooling rules, channel-wise max has the lowest five-dataset mean (35.3) against min (36.7) and mean (47.4) pooling.</p>
+  </figure> -->
+  <p class="caption narrow"><b>Individual patch vs patch descriptor for OOD detection.</b> ViT-B/16 with ImageNet-1K as ID.</p>
 </section>
 
 <hr class="rule">
 
 <!-- ============ 4. Descriptor ============ -->
 <section id="descriptor">
-  <h2>One descriptor for all patches, scored like the global token</h2>
+  <h2>Methodology</h2>
   <div class="split center">
     <figure style="margin:0">
       <div class="imgbox"><img src="img/overview.svg" alt="Mosaic overview: the CLS token and the max-pooled patch tokens from the last layer are each scored against class-conditional Gaussians, and the two scores are summed into one ID confidence" width="1008" height="720"></div>
@@ -163,19 +164,19 @@
       </div>
     </div>
   </div>
-  <figure class="narrow">
+  <!-- <figure class="narrow">
 <div class="imgbox"><img src="img/qq_gaussianity.svg" alt="Q-Q plots against a standard normal for global and patch features projected on large-eigenvalue, random and small-eigenvalue directions, with and without l2 normalization, for ViT-B/16 and CLIP ViT-B/16" loading="lazy" width="480" height="458"></div>
       <figcaption><b>Gaussianity of global and patch features.</b> Q&ndash;Q plots against a standard normal along large-eigenvalue, random and small-eigenvalue directions, with and without \(\ell_2\) normalization (ImageNet-LT calibration).</figcaption>
-    </figure>
+    </figure> -->
 </section>
 
 <hr class="rule">
 
-<!-- ============ 5. Why it helps ============ -->
-<section id="why">
-  <h2>The global token and the patch tokens catch different OOD images</h2>
+<!-- ============ 5. Complementarity ============ -->
+<section id="complementarity">
+  <h2>The global and patch descriptors detect different OOD images</h2>
   <div class="narrow">
-    <p>Take an OOD image and measure two distances to the nearest ID class: one from its <span class="g">global</span> descriptor and one from its max-pooled <span class="p">patch</span> descriptor. Each detector rejects an image when its own distance is above a threshold that still accepts a chosen share of ID images. If the two detectors agreed, every point below would fall in the "both detect" or "both miss" corner. They do not.</p>
+    <p>Take an OOD image and measure two distances to the nearest ID class: one from its <span class="g">global</span> descriptor and one from its <span class="p">patch</span> descriptor. Each detector rejects an image when its own distance is above a threshold that still accepts a chosen share of ID images. If the two detectors agreed, every point below would fall in the "both detect" or "both miss" corner. They do not.</p>
     <p>Move the slider to change the operating point. The dashed curve is Mosaic's decision boundary: it sums the two distances, so it also rejects images that sit just inside both individual thresholds.</p>
   </div>
 
@@ -203,26 +204,32 @@
       </div>
     </div>
   </div>
-  <p class="caption narrow"><b>Global and patch branches make different mistakes.</b> ImageNet-1K as ID. Axes show squared Mahalanobis distance to the nearest ID class on a log scale; larger means more OOD-like. Percentages are computed on all images of the selected set (class-averaged for NINCO, as in the paper); the plot draws a random sample of 900.</p>
+  <!-- <p class="caption narrow"><b>Global and patch branches make different mistakes.</b> ImageNet-1K as ID. Axes show squared Mahalanobis distance to the nearest ID class on a log scale; larger means more OOD-like. Percentages are computed on all images of the selected set (class-averaged for NINCO, as in the paper); the plot draws a random sample of 900.</p> -->
 
-  <figure>
+  <!-- <figure>
     <div class="imgbox"><img src="img/complementarity_datasets.svg" alt="Scatter plots of global score against patch score for OOD images from NINCO, SSB-Hard, Texture, OpenImage-O and iNaturalist, coloured by whether the global branch, the patch branch, both or neither detect them" loading="lazy" width="1033" height="300"></div>
     <figcaption><b>The same picture on all five OOD sets</b> (ViT-B/16, ImageNet-1K as ID, thresholds at 95% TPR). On every set some OOD images are detected by the patch score only and others by the global score only.</figcaption>
-  </figure>
+  </figure> -->
 
-  <figure class="narrow">
+  <!-- <figure class="narrow">
     <div class="imgbox"><img src="img/complementarity_backbones.svg" alt="Global score against patch score on NINCO for ViT-B/16 and CLIP ViT-B/16" loading="lazy" width="540" height="426"></div>
     <figcaption><b>Complementarity across pretraining objectives</b> (NINCO, ImageNet-1K as ID). For both the supervised ViT-B/16 and CLIP ViT-B/16, a share of OOD images is detected by only one of the two branches.</figcaption>
-  </figure>
+  </figure> -->
 
-  <figure class="narrow">
+  <!-- <figure class="narrow">
     <div class="imgbox"><img src="img/examples.png" alt="Five OOD images that Mahalanobis++ accepts as ID and Mosaic rejects, with the patches that contribute to the patch descriptor highlighted" loading="lazy" width="1271" height="638"></div>
     <figcaption><b>OOD images missed by the global score but detected with patch evidence</b> (ViT-B/16, ImageNet-1K as ID). Under each image is its ID percentile for each detector; anything above 5% is accepted as ID at the 95% operating point. Bottom row: patches whose features respond more strongly than in 99% of training images from the predicted class.</figcaption>
-  </figure>
+  </figure> -->
+</section>
 
+<hr class="rule">
+
+<!-- ============ Why it helps ============ -->
+<section id="why">
+  <h2>Why class-conditional modeling of patch descriptor helps?</h2>
   <figure class="narrow">
 <div class="imgbox"><img src="img/eigen_energy.svg" alt="Relative energy along each eigen-direction, ordered by decreasing eigenvalue, for OOD images detected by the global branch only and by the patch branch only" loading="lazy" width="520" height="337"></div>
-      <figcaption><b>Where the evidence sits in the spectrum.</b> Relative energy along each eigen-direction (decreasing \(\lambda_i\)) for OOD images detected by the global branch only and by the patch branch only; the dashed line is a uniform spread.</figcaption>
+      <figcaption>Patch exclusive detections place relatively more energy in the high-variance portion of the patch spectrum, whereas global exclusive detections have a less pronounced concentration in the corresponding portion of the global spectrum.</figcaption>
     </figure>
 </section>
 
@@ -230,7 +237,7 @@
 
 <!-- ============ 6. Results ============ -->
 <section id="results">
-  <h2>Mosaic lowers FPR95 on every one of 50 checkpoints</h2>
+  <h2>Results</h2>
   <div class="narrow">
     <p>The checkpoints cover ViT, DeiT, BEiT, Swin and EVA with supervised, CLIP and masked-image-modeling pretraining. Each point is one checkpoint, averaged over five OpenOOD sets (SSB-Hard, NINCO, iNaturalist, Textures, OpenImage-O). Points below the diagonal are checkpoints where Mosaic beats the selected baseline.</p>
   </div>
@@ -252,7 +259,7 @@
     </div>
   </div>
 
-  <h2 style="font-size:23px;text-align:center;margin:40px auto 14px;font-weight:500">Against established detectors on four representative backbones</h2>
+  <!-- <h2 style="font-size:23px;text-align:center;margin:40px auto 14px;font-weight:500">Against established detectors on four representative backbones</h2>
   <div class="card">
     <div class="controls">
       <div class="ctl"><span class="lab">Backbone</span><div class="seg" id="st-bb"></div></div>
@@ -261,12 +268,12 @@
     </div>
     <svg class="chart" id="st-chart" role="img" aria-label="FPR95 of eleven OOD detectors"></svg>
   </div>
-  <p class="caption narrow"><b>FPR95 (%, lower is better), sorted.</b> Mosaic has the lowest five-dataset average on all four backbones under both calibration sets. It does not lead on every individual dataset; switch the OOD set to see where.</p>
+  <p class="caption narrow"><b>FPR95 (%, lower is better), sorted.</b> Mosaic has the lowest five-dataset average on all four backbones under both calibration sets. It does not lead on every individual dataset; switch the OOD set to see where.</p> -->
 </section>
 
 <hr class="rule">
 
-<section id="plugin">
+<!-- <section id="plugin">
   <h2>The patch score also improves other distance-based detectors</h2>
   <div class="narrow">
     <p>The patch branch is not tied to Mahalanobis++. We add a patch confidence to seven detectors and keep each method's original global score as the baseline. KNN uses nearest-neighbor distance on the pooled descriptor; the Gaussian methods use the patch Mahalanobis score. X-Mahalanobis already combines global features from several layers and still gains.</p>
@@ -297,7 +304,7 @@
   <p class="caption narrow"><b>Sensitivity to the patch weight.</b> ImageNet-1K as ID; FPR95 averaged over the five OpenOOD sets. \(\alpha = 0\) is Mahalanobis++ and \(\alpha = 1\) is Mosaic.</p>
 </section>
 
-<hr class="rule">
+<hr class="rule"> -->
 
 <!-- ============ BibTeX ============ -->
 <section id="bibtex" class="narrow">
