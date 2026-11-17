@@ -105,9 +105,9 @@
       return out;
     }
     var QUAD = [
-      { key: 'both', label: 'Both detect', color: 'var(--c-both)' },
-      { key: 'g', label: 'Only the global score detects', color: 'var(--c-global)' },
-      { key: 'p', label: 'Only the patch score detects', color: 'var(--c-patch)' },
+      { key: 'both', label: 'Both Detects', color: 'var(--c-both)' },
+      { key: 'g', label: 'Only Global Score Detects', color: 'var(--c-global)' },
+      { key: 'p', label: 'Only Patch Score Detects', color: 'var(--c-patch)' },
       { key: 'miss', label: 'Both miss', color: 'var(--c-miss)' }
     ];
 
@@ -183,9 +183,9 @@
       row.innerHTML = '<svg viewBox="0 0 14 12" width="14" height="12"><line x1="0" x2="14" y1="6" y2="6" stroke="var(--accent)" stroke-width="2.25" stroke-dasharray="4 3"/></svg><span>Mosaic decision boundary</span><span></span>';
 
       var met = $('ex-meters'); clear(met);
-      [['Global score (Mahalanobis++)', stats[4], 'var(--c-global)'],
-       ['Patch score alone', stats[5], 'var(--c-patch)'],
-       ['Mosaic (global + patch)', stats[6], 'var(--accent)']].forEach(function (r) {
+      [['Global Score (Mahalanobis++)', stats[4], 'var(--c-global)'],
+       ['Patch Score', stats[5], 'var(--c-patch)'],
+       ['Mosaic (Global + Patch)', stats[6], 'var(--accent)']].forEach(function (r) {
         var box = html('div', { class: 'meter' }, met);
         html('span', {}, box, r[0]);
         html('span', { class: 'pct' }, box, f1(r[1]) + '%');
