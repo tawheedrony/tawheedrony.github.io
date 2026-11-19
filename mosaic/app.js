@@ -158,7 +158,7 @@
         path += (started ? 'L' : 'M') + X(xv).toFixed(1) + ' ' + Y(yv).toFixed(1);
         started = true;
       }
-      if (path) svg('path', { d: path, fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2.25, 'stroke-dasharray': '7 5' }, chart);
+      if (path) svg('path', { d: path, fill: 'none', stroke: 'var(--ours)', 'stroke-width': 2.25, 'stroke-dasharray': '7 5' }, chart);
 
       // corner labels
       var pad = 7;
@@ -180,12 +180,12 @@
         html('span', { class: 'pct' }, row, f1(stats[i]) + '%');
       });
       var row = html('div', { class: 'legend-row' }, leg);
-      row.innerHTML = '<svg viewBox="0 0 14 12" width="14" height="12"><line x1="0" x2="14" y1="6" y2="6" stroke="var(--accent)" stroke-width="2.25" stroke-dasharray="4 3"/></svg><span>Mosaic decision boundary</span><span></span>';
+      row.innerHTML = '<svg viewBox="0 0 14 12" width="14" height="12"><line x1="0" x2="14" y1="6" y2="6" stroke="var(--ours)" stroke-width="2.25" stroke-dasharray="4 3"/></svg><span>Mosaic decision boundary</span><span></span>';
 
       var met = $('ex-meters'); clear(met);
       [['Global Score (Mahalanobis++)', stats[4], 'var(--c-global)'],
        ['Patch Score', stats[5], 'var(--c-patch)'],
-       ['Mosaic (Global + Patch)', stats[6], 'var(--accent)']].forEach(function (r) {
+       ['Mosaic (Global + Patch)', stats[6], 'var(--ours)']].forEach(function (r) {
         var box = html('div', { class: 'meter' }, met);
         html('span', {}, box, r[0]);
         html('span', { class: 'pct' }, box, f1(r[1]) + '%');
@@ -231,7 +231,7 @@
         ['Best Single Patch', lo, 'var(--c-neutral)'],
         ['Patch Descriptor', ex[5], 'var(--c-patch)'],
         ['Global Token (Maha++)', ex[4], 'var(--c-global)'],
-        ['Mosaic (Global + Patch)', ex[6], 'var(--accent)']
+        ['Mosaic (Global + Patch)', ex[6], 'var(--ours)']
       ];
       clear(bars);
       var W = size(bars, 250).W, L = 158, R = 46, bh = 22, gap = 16, top = 26;
@@ -332,7 +332,7 @@
       svg('text', { x: W / 2, y: 12, 'text-anchor': 'middle', class: 'axis-title' }, delta, 'Mosaic − ' + FULL[st.base] + ', FPR95 (pp)');
       ds.forEach(function (o, i) {
         var x0 = DX(Math.min(0, o.d)), w = Math.max(1, Math.abs(DX(o.d) - DX(0)));
-        var b = svg('rect', { x: x0, y: dm.t + i * bh + 1, width: w, height: Math.max(1, bh - 2), rx: 1.5, fill: o.d <= 0 ? 'var(--accent)' : 'var(--c-miss)' }, delta);
+        var b = svg('rect', { x: x0, y: dm.t + i * bh + 1, width: w, height: Math.max(1, bh - 2), rx: 1.5, fill: o.d <= 0 ? 'var(--ours)' : 'var(--c-miss)' }, delta);
         var hit = svg('rect', { x: dm.l, y: dm.t + i * bh, width: W - dm.l - dm.r, height: bh, fill: 'transparent' }, delta);
         hit.addEventListener('pointerenter', function () { b.setAttribute('opacity', 0.6); });
         hit.addEventListener('pointerleave', function () { b.setAttribute('opacity', 1); });
