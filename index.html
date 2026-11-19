@@ -1,0 +1,146 @@
+---
+layout: null
+title: Tawheed Islam
+---
+{%- assign news_items = site.news | sort: 'date' | reverse -%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tawheed Islam</title>
+    <meta name="author" content="Tawheed Islam">
+    <meta name="description" content="Tawheed Islam — CS PhD student at SUNY Binghamton working on robust and efficient multimodal perception.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta property="og:title" content="Tawheed Islam">
+    <meta property="og:description" content="CS PhD student at SUNY Binghamton working on robust and efficient multimodal perception.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.url }}/">
+    <meta property="og:image" content="{{ site.url }}/assets/img/prof_pic.jpg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💥</text></svg>">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/barron.css' | relative_url }}">
+  </head>
+
+  <body>
+    <main class="page">
+      <header class="bio">
+        <div class="bio-text">
+          <h1 class="name">Tawheed Islam</h1>
+          <p>
+            I'm a CS PhD student at <a href="https://www.binghamton.edu/">SUNY Binghamton</a>, advised by <a href="http://www.cs.binghamton.edu/~kang">Dr. Kyoung Don Kang</a>.
+          </p>
+          <p>
+            My research focuses on language and vision-language models, along with robust and efficient machine learning, and extends them to emerging sensing modalities. My broader objective is to develop perception systems through the joint optimization of sensing, computation, and models.
+          </p>
+          <p>
+            Previously, I worked as a Software Engineer at <a href="https://telnyx.com">Telnyx</a> and as a Data Engineer at <a href="https://moonfroglabs.com">Moonfrog Labs</a>. I completed my B.Sc. in Electrical &amp; Electronic Engineering from <a href="https://www.buet.ac.bd/web/#/">BUET</a>.
+          </p>
+          <p class="bio-links">
+            <a href="mailto:tawheedrony@gmail.com">Email</a> &nbsp;/&nbsp;
+            <a href="{{ '/assets/pdf/TawheedIslam_Resume.pdf' | relative_url }}">CV</a> &nbsp;/&nbsp;
+            <a href="https://github.com/tawheedrony">GitHub</a> &nbsp;/&nbsp;
+            <a href="https://www.linkedin.com/in/tawheed-rony">LinkedIn</a>
+          </p>
+        </div>
+        <div class="bio-photo">
+          <a href="{{ '/assets/img/prof_pic.jpg' | relative_url }}"><img src="{{ '/assets/img/prof_pic.jpg' | relative_url }}" alt="Tawheed Islam" width="405" height="405"></a>
+        </div>
+      </header>
+
+      <section class="section-header">
+        <h2>News</h2>
+      </section>
+      <ul class="news-list">
+        {%- for n in news_items %}
+        <li><span class="news-date">{{ n.date | date: "%b %Y" }}</span> {{ n.content | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+        {%- endfor %}
+      </ul>
+
+      <section class="section-header">
+        <h2>Research</h2>
+        <p>
+          Topics include out-of-distribution detection, test-time adaptation, and edge AI. * denotes first author. Click a figure to enlarge it. Some papers are <span class="highlight">highlighted</span>.
+        </p>
+      </section>
+
+      <section class="papers">
+        <article class="paper highlighted">
+          <div class="paper-media">
+            <a href="{{ '/mosaic/img/overview.svg' | relative_url }}"><img class="thumb" src="{{ '/mosaic/img/overview.svg' | relative_url }}" alt="Mosaic overview"></a>
+          </div>
+          <div class="paper-info">
+            <a href="{{ '/mosaic/' | relative_url }}" class="papertitle">Mosaic: Improving Out-of-Distribution Detection in Vision Transformers with Patch Representations</a>
+            <div class="paper-authors"><strong>Md Tawheedul Islam Bhuian</strong>*, Md Farhan Sadiq, Rahim Hossain, Kyoung-Don Kang</div>
+            <div class="paper-venue"><em>Preprint</em>, 2026</div>
+            <div class="paper-links"><a href="{{ '/mosaic/' | relative_url }}">project page</a></div>
+            <p class="paper-desc">Global penultimate-layer features can miss OOD evidence carried by patch tokens. Mosaic pools patch tokens into an image descriptor, models its class-conditional geometry, and combines Mahalanobis distances from the global and patch feature spaces.</p>
+          </div>
+        </article>
+        <article class="paper highlighted">
+          <div class="paper-media">
+            <a href="{{ '/assets/img/papers/lsf.png' | relative_url }}"><img class="thumb" src="{{ '/assets/img/papers/lsf.png' | relative_url }}" alt="LSF overview"></a>
+          </div>
+          <div class="paper-info">
+            <span class="papertitle">LSF: Layer Selection and Fusion for Post-Hoc Out-of-Distribution Detection</span>
+            <div class="paper-authors">Rahim Hossain*, <strong>Md Tawheedul Islam Bhuian</strong>*, Md Farhan Sadiq, Kyoung-Don Kang</div>
+            <div class="paper-venue"><em>Under review</em>, 2027</div>
+                        <p class="paper-desc">The penultimate layer is tuned for class separation and can hide low-level signs of distribution shift. LSF selects the intermediate layer with the largest entropy-density drop and fuses it with the penultimate layer for post-hoc OOD detection.</p>
+          </div>
+        </article>
+        <article class="paper highlighted">
+          <div class="paper-media">
+            <a href="{{ '/assets/img/papers/fate.png' | relative_url }}"><img class="thumb" src="{{ '/assets/img/papers/fate.png' | relative_url }}" alt="FATE qualitative comparison of bounding boxes"></a>
+          </div>
+          <div class="paper-info">
+            <a href="https://arxiv.org/abs/2606.17334" class="papertitle">FATE: Pillar Encoding and Frequency-Aware Training for Event-Based Object Detection</a>
+            <div class="paper-authors"><strong>Md Tawheedul Islam Bhuian</strong>*, Kyoung-Don Kang</div>
+            <div class="paper-venue"><em>arXiv</em>, 2026</div>
+            <div class="paper-links"><a href="https://arxiv.org/abs/2606.17334">arXiv</a></div>
+            <p class="paper-desc">Fixed temporal sub-bins discard fine timing in sparse event streams. FATE encodes spatial pillars with a Legendre polynomial basis and trains with temporally dense pseudo-labels for high-frequency detection.</p>
+          </div>
+        </article>
+        <article class="paper">
+          <div class="paper-media">
+            <a href="{{ '/assets/img/papers/tdal.png' | relative_url }}"><img class="thumb" src="{{ '/assets/img/papers/tdal.png' | relative_url }}" alt="TDA-L architecture"></a>
+          </div>
+          <div class="paper-info">
+            <a href="https://www.mdpi.com/1424-8220/25/12/3574" class="papertitle">TDA-L: Reducing Latency and Memory Consumption of Test-Time Adaptation for Real-Time Intelligent Sensing</a>
+            <div class="paper-authors">Rahim Hossain, <strong>Md Tawheedul Islam Bhuian</strong>, Kyoung-Don Kang</div>
+            <div class="paper-venue"><em>Sensors</em>, 2025</div>
+            <div class="paper-links"><a href="https://www.mdpi.com/1424-8220/25/12/3574">paper</a></div>
+            <p class="paper-desc">Gradient-based test-time adaptation is too heavy for real-time sensing. TDA-L adds low-rank (LoRA) projections to the training-free TDA adapter to shrink the features it processes at test time.</p>
+          </div>
+        </article>
+        <article class="paper">
+          <div class="paper-media">
+            <a href="{{ '/assets/img/papers/icps.png' | relative_url }}"><img class="thumb" src="{{ '/assets/img/papers/icps.png' | relative_url }}" alt="Network architecture"></a>
+          </div>
+          <div class="paper-info">
+            <a href="https://ieeexplore.ieee.org/document/10428851" class="papertitle">Shared Encoder with Attention for Non-Intrusive Appliance Load Monitoring</a>
+            <div class="paper-authors"><strong>Md Tawheedul Islam Bhuian</strong>*, Sadequal Islam, Md Forkan Uddin</div>
+            <div class="paper-venue"><em>IEEE ICPS</em>, 2023</div>
+            <div class="paper-links"><a href="https://ieeexplore.ieee.org/document/10428851">paper</a></div>
+            <p class="paper-desc">Non-intrusive load monitoring infers each appliance's power from a single aggregate meter signal. A shared 1-D convolutional encoder with attention feeds separate regression and on/off classification heads.</p>
+          </div>
+        </article>
+        <article class="paper">
+          <div class="paper-media">
+            <a href="{{ '/assets/img/papers/icece.png' | relative_url }}"><img class="thumb" src="{{ '/assets/img/papers/icece.png' | relative_url }}" alt="Level crossing system stages"></a>
+          </div>
+          <div class="paper-info">
+            <a href="https://ieeexplore.ieee.org/document/10089007" class="papertitle">Automated Level Crossing System - A Computer Vision Based Approach with Raspberry Pi Microcontroller</a>
+            <div class="paper-authors">Rahat Uddin Murshed, Shuvra Kanti Druba, <strong>Md Tawheedul Islam Bhuian</strong>, Abdur Rumi</div>
+            <div class="paper-venue"><em>ICECE</em>, 2022</div>
+            <div class="paper-links"><a href="https://ieeexplore.ieee.org/document/10089007">paper</a></div>
+            <p class="paper-desc">Unmanned level crossings cause frequent accidents in Bangladesh. A low-cost Raspberry Pi system detects approaching trains from live video, closes the crossing, monitors for trespassers and alerts authorities.</p>
+          </div>
+        </article>
+      </section>
+
+      <footer class="site-footer">
+        Design from <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron's website</a>.
+      </footer>
+    </main>
+  </body>
+</html>
