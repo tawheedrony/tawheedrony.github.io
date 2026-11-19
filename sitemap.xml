@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?> <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> <url> <loc>https://tawheedrony.github.io/news/announcement_5/</loc> <lastmod>2025-01-15T14:00:00+00:00</lastmod> </url> <url> <loc>https://tawheedrony.github.io/news/announcement_4/</loc> <lastmod>2025-12-24T16:00:00+00:00</lastmod> </url> <url> <loc>https://tawheedrony.github.io/news/announcement_6/</loc> <lastmod>2026-06-25T16:00:00+00:00</lastmod> </url> <url> <loc>https://tawheedrony.github.io/news/announcement_7/</loc> <lastmod>2026-08-10T16:00:00+00:00</lastmod> </url> <url> <loc>https://tawheedrony.github.io/news/announcement_8/</loc> <lastmod>2026-08-17T16:00:00+00:00</lastmod> </url> <url> <loc>https://tawheedrony.github.io/projects/1_project/</loc> <lastmod>2026-11-17T01:32:32+00:00</lastmod> </url> <url> <loc>https://tawheedrony.github.io/projects/2_project/</loc> <lastmod>2026-11-17T01:32:32+00:00</lastmod> </url> <url> <loc>https://tawheedrony.github.io/projects/3_project/</loc> <lastmod>2026-11-17T01:32:32+00:00</lastmod> </url> <url> <loc>https://tawheedrony.github.io/</loc> </url> <url> <loc>https://tawheedrony.github.io/cv/</loc> </url> <url> <loc>https://tawheedrony.github.io/good-reads/</loc> </url> <url> <loc>https://tawheedrony.github.io/news/</loc> </url> <url> <loc>https://tawheedrony.github.io/publications/</loc> </url> <url> <loc>https://tawheedrony.github.io/blog/</loc> </url> <url> <loc>https://tawheedrony.github.io/mosaic/</loc> <lastmod>2026-11-17T01:32:05+00:00</lastmod> </url> </urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://tawheedrony.github.io/cv/</loc>
+</url>
+<url>
+<loc>https://tawheedrony.github.io/</loc>
+</url>
+<url>
+<loc>https://tawheedrony.github.io/assets/pdf/NIML%20Thesis%20Book.pdf</loc>
+<lastmod>2026-11-19T15:35:35+00:00</lastmod>
+</url>
+<url>
+<loc>https://tawheedrony.github.io/assets/pdf/TawheedIslam_Resume.pdf</loc>
+<lastmod>2026-11-19T15:35:35+00:00</lastmod>
+</url>
+<url>
+<loc>https://tawheedrony.github.io/mosaic/</loc>
+<lastmod>2026-11-19T15:35:35+00:00</lastmod>
+</url>
+</urlset>

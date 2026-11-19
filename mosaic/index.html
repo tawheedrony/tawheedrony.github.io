@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mosaic: OOD Detection in Vision Transformers with Patch Representations</title>
 <meta name="description" content="Mosaic is a post-hoc out-of-distribution detector that adds a Mahalanobis score on max-pooled patch tokens to the usual global score, lowering FPR95 on all 50 evaluated ViT checkpoints.">
@@ -34,7 +35,7 @@
       <li><a href="#framework">Framework</a></li>
       <li><a href="#abstract">Abstract</a></li>
       <li><a href="#patches">Patches</a></li>
-      <li><a href="#descriptor">Descriptor</a></li>
+      <li><a href="#descriptor">Methodology</a></li>
       <li><a href="#complementarity">Complementarity</a></li>
       <li><a href="#why">Why it helps</a></li>
       <li><a href="#results">Results</a></li>
@@ -107,7 +108,7 @@ geometry, and combines Mahalanobis distances computed in global and patch featur
 
 <!-- ============ 3. OOD separation of individual patches ============ -->
 <section id="patches">
-  <h2>No single patch is a good detector, but patch descriptors are.</h2>
+  <h2>No single patch is a good OOD detector, but patch descriptors are.</h2>
   <div class="narrow">
     <p>We fit a separate Mahalanobis detector at each of the 196 patch positions of ViT-B/16. Every position is far worse than the global representation. Patch descriptor pools across positions to find the extreme responses.</p>
   </div>
